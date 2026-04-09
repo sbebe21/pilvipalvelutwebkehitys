@@ -8,4 +8,12 @@ function App() {
   );
 }
 
+function App{
+  return (
+    <div>
+      import app from "./firebase";
+    </div>
+  );
+}
+
 export default App;

@@ -1,4 +1,4 @@
-import Koodinimi from "./koodinimi";
+//import Koodinimi from "./koodinimi";
 
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";

@@ -1,19 +1,49 @@
 import Koodinimi from "./koodinimi";
 
-function App() {
-  return (
-    <div>
-      <Koodinimi />
-    </div>
-  );
-}
+import { useEffect, useState } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import LoginForm from "./LoginForm";
+import { auth, logout } from "./authService";
 
-function App{
+function App() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const key = `koodinimi_${user.uid}`;
+    const existing = localStorage.getItem(key);
+    if (!existing) {
+      localStorage.setItem(key, "");
+    }
+  }, [user]);
+
   return (
+
+    // Paljon muuta renderöitävää
+
     <div>
-      import app from "./firebase";
+      {user ? (
+        <>
+          <p>👋 Tervetuloa, {user.email}</p>
+          <button onClick={logout}>Kirjaudu ulos</button>
+        </>
+      ) : (
+        <LoginForm />
+      )}
     </div>
   );
+
+  // Paljon muuta koodia
+
 }
 
 export default App;

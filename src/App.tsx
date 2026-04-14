@@ -1,7 +1,7 @@
 import Koodinimi from "./koodinimi";
 
 import { useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged, type User } from "firebase/auth";
 import LoginForm from "./LoginForm";
 import { auth, logout } from "./authService";
 

@@ -8,9 +8,9 @@ import { auth, logout } from './authService';
 import { onAuthStateChanged, type User } from 'firebase/auth';
 import { getOrCreateCodename } from './codenameService';
 import { QuizForm } from './components/QuizForm';
-import { createSession } from './gameSessionService';
-import { resolveRound } from './gameController';
-import { type Session } from './types/Session';
+import { createSession } from './services/gameSessionService';
+import { resolveRound } from './services/gameController';
+import { type Session } from './services/types/Session';
 
 function App() {
   const [count, setCount] = useState(0);

@@ -182,4 +182,26 @@ function App() {
   )
 }
 
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { useLocation } from 'react-router-dom'; // Tämä voin jos käyttä router:ia
+
+...
+function RouteAnalytics() {
+  // const location = useLocation(); // Tämä voin jos käyttä router:ia
+  const { trackEvent } = useCloudflareAnalytics();  
+  const initialReferrer = useRef<string>(
+    document.referrer || "direct"
+  );
+
+  useEffect(() => {
+    trackEvent("page_view", {
+      referrer: initialReferrer.current,
+      landingPath: window.location.pathname,
+      //path: location.pathname
+    });
+  }, [trackEvent]);
+
+  return null;
+}
+
 export default App
